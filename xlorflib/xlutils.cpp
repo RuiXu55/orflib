@@ -267,6 +267,8 @@ orf::McParams xlOperToMcParams(xlw::XlfOper xlRange)
         mcparams.urngType = McParams::UrngType::RANLUX3;
       else if (paramvalue == "RANLUX4")
         mcparams.urngType = McParams::UrngType::RANLUX4;
+      else if (paramvalue == "SOBOL")
+        mcparams.urngType = McParams::UrngType::SOBOL;
       else
         ORF_ASSERT(0, "xlOperToMcParams: invalid value for McParam " + paramname + "!");
     }
@@ -276,6 +278,8 @@ orf::McParams xlOperToMcParams(xlw::XlfOper xlRange)
       std::transform(paramvalue.begin(), paramvalue.end(), paramvalue.begin(), ::toupper);
       if (paramvalue == "EULER")
         mcparams.pathGenType = McParams::PathGenType::EULER;
+      else if (paramvalue == "BROWNIANBRIDGE")
+        mcparams.pathGenType = McParams::PathGenType::BROWNIANBRIDGE;
       else
         ORF_ASSERT(0, "xlOperToMcParams: invalid value for McParam " + paramname + "!");
     }

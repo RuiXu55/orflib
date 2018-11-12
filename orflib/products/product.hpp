@@ -34,6 +34,9 @@ public:
   /** Returns the payment amounts */
   Vector const& payAmounts() const;
 
+  /** Returns the number of assets this product depends on */
+  virtual size_t nAssets() const = 0;
+
   /** Evaluates the product given the passed-in path
       The "pricePath" matrix must have as many rows as the number of fixing times
   */

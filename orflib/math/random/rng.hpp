@@ -7,6 +7,7 @@
 #define ORF_RNG_HPP
 
 #include <orflib/math/random/normalrng.hpp>
+#include <orflib/math/random/sobolurng.hpp>
 
 BEGIN_NAMESPACE(orf)
 
@@ -21,6 +22,8 @@ using NormalRngRanLux3 = NormalRng<std::ranlux24>;
 
 /** RanLux level 4 */
 using NormalRngRanLux4 = NormalRng<std::ranlux48>;
+/** Sobol */
+using NormalRngSobol = NormalRng<orf::SobolURng>;
 
 END_NAMESPACE(orf)
 

@@ -18,6 +18,9 @@ public:
   /** Initializing ctor */
   EuropeanCallPut(int payoffType, double strike, double timeToExp);
 
+  /** The number of assets this product depends on */
+  virtual size_t nAssets() const override { return 1; }
+
   /** Evaluates the product given the passed-in path
       The "pricePath" matrix must have as many rows as
       the number of fixing times

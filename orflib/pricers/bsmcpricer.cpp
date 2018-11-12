@@ -4,6 +4,8 @@
 */
 
 #include <orflib/pricers/bsmcpricer.hpp>
+#include <orflib/methods/montecarlo/eulerpathgenerator.hpp>
+#include <orflib/methods/montecarlo/brownianbridge.hpp>
 #include <cmath>
 
 using namespace std;
@@ -26,13 +28,39 @@ spot_(spot), mcparams_(mcparams)
   // Create the path generator, one factor to simulate the spot
   if (mcparams.pathGenType == McParams::PathGenType::EULER) {
     if (mcparams.urngType == McParams::UrngType::MINSTDRAND)
-      pathgen_ = SPtrPathGenerator(new EulerPathGenerator<NormalRngMinStdRand>(ntimesteps, 1));
+      pathgen_ = SPtrPathGenerator(new EulerPathGenerator<NormalRngMinStdRand>(
+          timesteps.begin(), timesteps.end(), 1));
     else if (mcparams.urngType == McParams::UrngType::MT19937)
-      pathgen_ = SPtrPathGenerator(new EulerPathGenerator<NormalRngMt19937>(ntimesteps, 1));
+      pathgen_ = SPtrPathGenerator(new EulerPathGenerator<NormalRngMt19937>(
+          timesteps.begin(), timesteps.end(), 1));
     else if (mcparams.urngType == McParams::UrngType::RANLUX3)
-      pathgen_ = SPtrPathGenerator(new EulerPathGenerator<NormalRngRanLux3>(ntimesteps, 1));
+      pathgen_ = SPtrPathGenerator(new EulerPathGenerator<NormalRngRanLux3>(
+          timesteps.begin(), timesteps.end(), 1));
     else if (mcparams.urngType == McParams::UrngType::RANLUX4)
-      pathgen_ = SPtrPathGenerator(new EulerPathGenerator<NormalRngRanLux4>(ntimesteps, 1));
+      pathgen_ = SPtrPathGenerator(new EulerPathGenerator<NormalRngRanLux4>(
+          timesteps.begin(), timesteps.end(), 1));
+    else if (mcparams.urngType == McParams::UrngType::SOBOL)
+      pathgen_ = SPtrPathGenerator(new EulerPathGenerator<NormalRngSobol>(
+          timesteps.begin(), timesteps.end(), 1));
+    else
+      ORF_ASSERT(0, "unknown urng type!");
+  } 
+  else if (mcparams.pathGenType == McParams::PathGenType::BROWNIANBRIDGE) {
+    if (mcparams.urngType == McParams::UrngType::MINSTDRAND)
+      pathgen_ = SPtrPathGenerator(new BrownianBridge<NormalRngMinStdRand>(
+          timesteps.begin(), timesteps.end(), 1));
+    else if (mcparams.urngType == McParams::UrngType::MT19937)
+      pathgen_ = SPtrPathGenerator(new BrownianBridge<NormalRngMt19937>(
+          timesteps.begin(), timesteps.end(), 1));
+    else if (mcparams.urngType == McParams::UrngType::RANLUX3)
+      pathgen_ = SPtrPathGenerator(new BrownianBridge<NormalRngRanLux3>(
+          timesteps.begin(), timesteps.end(), 1));
+    else if (mcparams.urngType == McParams::UrngType::RANLUX4)
+      pathgen_ = SPtrPathGenerator(new BrownianBridge<NormalRngRanLux4>(
+          timesteps.begin(), timesteps.end(), 1));
+    else if (mcparams.urngType == McParams::UrngType::SOBOL)
+      pathgen_ = SPtrPathGenerator(new BrownianBridge<NormalRngSobol>(
+          timesteps.begin(), timesteps.end(), 1));
     else
       ORF_ASSERT(0, "unknown urng type!");
   }

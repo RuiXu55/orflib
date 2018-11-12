@@ -10,7 +10,6 @@
 #include <orflib/market/yieldcurve.hpp>
 #include <orflib/methods/montecarlo/mcparams.hpp>
 #include <orflib/methods/montecarlo/pathgenerator.hpp>
-#include <orflib/methods/montecarlo/eulerpathgenerator.hpp>
 #include <orflib/math/stats/statisticscalculator.hpp>
 
 BEGIN_NAMESPACE(orf)

@@ -22,6 +22,24 @@
     <ClCompile Include="market\volatilitytermstructure.cpp">
       <Filter>market</Filter>
     </ClCompile>
+    <ClCompile Include="math\linalg\choldcmp.cpp">
+      <Filter>math\linalg</Filter>
+    </ClCompile>
+    <ClCompile Include="math\linalg\eigensym.cpp">
+      <Filter>math\linalg</Filter>
+    </ClCompile>
+    <ClCompile Include="math\linalg\spectrunc.cpp">
+      <Filter>math\linalg</Filter>
+    </ClCompile>
+    <ClCompile Include="math\random\sobolurng.cpp">
+      <Filter>math\random</Filter>
+    </ClCompile>
+    <ClCompile Include="methods\montecarlo\pathgenerator.cpp">
+      <Filter>methods\montecarlo</Filter>
+    </ClCompile>
+    <ClCompile Include="pricers\multiassetbsmcpricer.cpp">
+      <Filter>pricers</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="defines.hpp" />
@@ -92,6 +110,24 @@
     <ClInclude Include="market\volatilitytermstructure.hpp">
       <Filter>market</Filter>
     </ClInclude>
+    <ClInclude Include="math\linalg\linalg.hpp">
+      <Filter>math\linalg</Filter>
+    </ClInclude>
+    <ClInclude Include="math\random\primitivepolynomials.hpp">
+      <Filter>math\random</Filter>
+    </ClInclude>
+    <ClInclude Include="math\random\sobolurng.hpp">
+      <Filter>math\random</Filter>
+    </ClInclude>
+    <ClInclude Include="methods\montecarlo\brownianbridge.hpp">
+      <Filter>methods\montecarlo</Filter>
+    </ClInclude>
+    <ClInclude Include="pricers\multiassetbsmcpricer.hpp">
+      <Filter>pricers</Filter>
+    </ClInclude>
+    <ClInclude Include="products\asianbasketcallput.hpp">
+      <Filter>products</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="math">
@@ -123,6 +159,9 @@
     </Filter>
     <Filter Include="products">
       <UniqueIdentifier>{afc01b85-46d5-4755-9929-c8337bef4fae}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="math\linalg">
+      <UniqueIdentifier>{faf61328-cc3b-4089-b6d9-037d6a419ce8}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

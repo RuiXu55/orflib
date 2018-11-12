@@ -1,6 +1,57 @@
 ORFLIB Release Notes
 ====================
 
+VERSION 0.7.0
+-------------
+
+### Additions
+
+1. New file `orflib/math/random/primitivepolynomials.hpp`  
+	It contains the encoding of the first 3,666 primitive polynomials mod 2
+  
+2. New files `orflib/math/random/sobolurng.hpp` and `.cpp`  
+	Implementation of the Sobol sequence generator.
+
+3. New folder `orflib/math/linalg`  
+	It will contain linear algebra related routines.
+
+4. New files `choldcmp.cpp`, `eigensym.cpp`, `spectrunc.cpp` in folder `orflib/math/linalg`  
+	They contain implementations for Cholesky decomposition, eigenvalues/eigenvectors of 
+	a real symmetric matrix and spectral truncation of a non-positive definite correlation matrix.
+
+5.  Added function declarations for above algorithms in `orflib/math/linalg/linalg.hpp`
+
+6. New Excel functions ORF.EIGENSYM() and ORF.SPECTRUNC() in `xlfunctions0.cpp`  
+	They allow testing of the diagonalization and spectral truncation of a correlation matrix.
+
+7. New file  `orflib/methods/montecarlo/brownianbridge.hpp`  
+	It implements the Brownian bridge path generator.
+
+8. New file `orflib/products/asianbasketcallput.hpp`  
+	It defines the payoff of an Asian call or put option on a basket of assets.
+  
+9. New files `orflib/pricers/multiassetbsmcpricer.hpp` and `.cpp`  
+	They define the multi-asset Black-Scholes Monte Carlo pricer class.
+  
+10. New Excel function ORF.ASIANBASKETBSMC() implemented in the file `xlorflib/xlfunctions3.cpp`	
+	Provides the Excel interface to pricing Asian baskets in Black-Scholes MC.
+
+### Modifications
+
+1. Added typedef for Sobol generator in file `orflib/math/random/rng.hpp`
+
+2. Added Cholesky decomposition and correlation spectral truncation to class PathGenerator
+
+3. Widened the ctors of EulerPathGenerator and BrownianBridge to accept an optional correlation matrix
+
+4. Added method nAssets() to class Product in file `orflib/products/product.hpp` and to class EuropeanCallPut
+
+5. Extended the utility function xlOperToMcParams() to recognize more values for the URNGType and PathGenType settings
+
+6. Added linking to f2c.lib, blas.lib and lapack.lib third party libraries in the `armadillo-9.100.5/lib` folder  
+   This affects only the xlorflib project.
+
+
 VERSION 0.6.0
 -------------
 

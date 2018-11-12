@@ -5,10 +5,13 @@
 
 #include <xlw/xlw.h>
 #include <orflib/defines.hpp>
+#include <orflib/math/matrix.hpp>
 #include <orflib/utils.hpp>
 #include <orflib/math/interpol/piecewisepolynomial.hpp>
 #include <orflib/math/optim/roots.hpp>
 #include <orflib/math/optim/polyfunc.hpp>
+#include <orflib/math/linalg/linalg.hpp>
+
 #include <xlorflib/xlutils.hpp>
 
 using namespace xlw;
@@ -32,6 +35,52 @@ LPXLFOPER EXCEL_EXPORT xlOrfMatrixEcho(LPXLFOPER xlMat)
   orf::Matrix mat = xlOperToMatrix(XlfOper(xlMat));
   XlfOper xlRange = xlMatrixToOper(mat);
   return XlfOper(xlRange);
+  EXCEL_END;
+}
+
+LPXLFOPER EXCEL_EXPORT xlOrfCholDcmp(LPXLFOPER xlMat)
+{
+  EXCEL_BEGIN;
+  if (XlfExcel::Instance().IsCalledByFuncWiz())
+    return XlfOper(true);
+
+  orf::Matrix inmat = xlOperToMatrix(XlfOper(xlMat));
+  orf::Matrix outmat;
+  choldcmp(inmat, outmat);
+
+  XlfOper xlRange = xlMatrixToOper(outmat);
+  return XlfOper(xlRange);
+  EXCEL_END;
+}
+
+LPXLFOPER EXCEL_EXPORT xlOrfEigenSym(LPXLFOPER xlMat) 
+{
+  EXCEL_BEGIN;
+
+  orf::Matrix mat = xlOperToMatrix(XlfOper(xlMat));
+  Vector eigenvals;
+  Matrix eigenvecs;
+  orf::eigensym(mat, eigenvals, eigenvecs);
+
+  XlfOper xlRange((RW)mat.n_rows, (COL)mat.n_cols + 1);
+  for (RW i = 0; i < (RW)mat.n_rows; ++i) {
+    xlRange(i, 0) = eigenvals[i];
+    for (COL j = 1; j < (COL)mat.n_cols + 1; ++j)
+      xlRange(i, j) = eigenvecs(i, j - 1);
+  }
+  return xlRange;
+  EXCEL_END;
+}
+
+LPXLFOPER EXCEL_EXPORT xlOrfSpecTrunc(LPXLFOPER xlMat)
+{
+  EXCEL_BEGIN;
+
+  orf::Matrix mat = xlOperToMatrix(XlfOper(xlMat));
+  orf::spectrunc(mat);
+
+  XlfOper xlRange = xlMatrixToOper(mat);
+  return xlRange;
   EXCEL_END;
 }
 

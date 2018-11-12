@@ -19,8 +19,12 @@ class EulerPathGenerator : public PathGenerator
 {
 public:
 
-  /** Ctor for generating independent increments for independent factors */
-  EulerPathGenerator(size_t ntimesteps, size_t nfactors);
+  /** Ctor for generating increments for correlated factors.
+      If the correlation matrix is not passed in, it assumes independent factors
+  */
+  template<typename ITER>
+  EulerPathGenerator(ITER timestepsBegin, ITER timestepsEnd, size_t nfactors,
+                     Matrix const & correlMat = Matrix());
 
   /** Returns the dimension of the generator */
   size_t dim() const;
@@ -30,17 +34,34 @@ public:
 
 protected:
   NRNG nrng_;
+  Vector sqrtDeltaT_;              // sqrt(T1), sqrt(T2-T1), ...
+  Vector normalDevs_;              // scratch array
+
 };
 
 ///////////////////////////////////////////////////////////////////////////////
 // Inline definitions
 
 template <typename NRNG>
-inline EulerPathGenerator<NRNG>::EulerPathGenerator(size_t ntimesteps, size_t nfactors)
-  : nrng_(ntimesteps * nfactors, 0.0, 1.0)
+template <typename ITER>
+inline EulerPathGenerator<NRNG>::EulerPathGenerator(ITER timestepsBegin,
+                          ITER timestepsEnd,
+                          size_t nfactors,
+                          Matrix const& correlMat)
+  : PathGenerator((timestepsEnd - timestepsBegin), nfactors, correlMat),
+  nrng_((timestepsEnd - timestepsBegin) * nfactors, 0.0, 1.0)
 {
-  ntimesteps_ = ntimesteps;
-  nfactors_ = nfactors;
+  ORF_ASSERT(ntimesteps_ > 0, "no time steps!");
+  normalDevs_.resize(ntimesteps_);
+  sqrtDeltaT_.resize(ntimesteps_);
+  sqrtDeltaT_[0] = sqrt(*timestepsBegin);
+  ITER it = ++timestepsBegin;
+  size_t i = 1;
+  for (; it != timestepsEnd; ++it, ++i) {
+    double deltaT = *it - *(it - 1);
+    ORF_ASSERT(deltaT > 0.0, "time steps are not unique or not in increasing order!");
+    sqrtDeltaT_(i) = sqrt(deltaT);
+  }
 }
 
 template <typename NRNG>
@@ -55,9 +76,21 @@ inline void EulerPathGenerator<NRNG>::next(Matrix& pricePath)
   pricePath.resize(ntimesteps_, nfactors_);
   // iterate over columns; the matrix will be filled column by column
   for (size_t j = 0; j < nfactors_; ++j) {
-    Matrix::col_iterator cbegin = pricePath.begin_col(j);
-    Matrix::col_iterator cend = pricePath.end_col(j);
-    nrng_.next(cbegin, cend);
+    nrng_.next(normalDevs_.begin(), normalDevs_.end());
+    for (size_t i = 0; i < ntimesteps_; ++i)
+      pricePath(i, j) = normalDevs_(i);
+  }
+  // finally apply the Cholesky factor if not empty
+  if (sqrtCorrel_.n_rows != 0) {
+    for (size_t i = 0; i < ntimesteps_; ++i) {
+      for (size_t j = 0; j < nfactors_; ++j) {
+        double sum = 0.0;
+        for (size_t k = 0; k < nfactors_; ++k) {
+          sum += sqrtCorrel_(nfactors_ - j - 1, k) * pricePath(i, k);
+        }
+        pricePath(i, nfactors_ - j - 1) = sum;
+      }
+    }
   }
 }
 

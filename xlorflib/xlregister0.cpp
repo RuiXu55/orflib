@@ -24,6 +24,30 @@ XLRegistration::XLFunctionRegistrationHelper regOrfMatrixEcho(
   "xlOrfMatrixEcho", "ORF.MATRIXECHO", "Echoing the input matrix",
   "ORFLIB", OrfMatrixEchoArgs, 1);
 
+// Register the function ORF.CHOLDCMP
+XLRegistration::Arg OrfCholDcmpArgs[] = {
+  { "Matrix", "Input matrix", "XLF_OPER" }
+};
+XLRegistration::XLFunctionRegistrationHelper regOrfCholDcmp(
+  "xlOrfCholDcmp", "ORF.CHOLDCMP", "Cholesky decomposition of symmetric, positive definite matrix",
+  "ORFLIB", OrfCholDcmpArgs, 1);
+
+// Register the function ORF.EIGENSYM
+XLRegistration::Arg OrfEigenSymArgs[] = {
+  { "Matrix", "Input matrix", "XLF_OPER" }
+};
+XLRegistration::XLFunctionRegistrationHelper regOrfEigenSym(
+  "xlOrfEigenSym", "ORF.EIGENSYM", "Eigenvalues and eigenvectors of a symmetric matrix",
+  "ORFLIB", OrfEigenSymArgs, 1);
+
+// Register the function ORF.SPECTRUNC
+XLRegistration::Arg OrfSpecTruncArgs[] = {
+  { "Matrix", "Input matrix", "XLF_OPER" }
+};
+XLRegistration::XLFunctionRegistrationHelper regOrfSpecTrunc(
+  "xlOrfSpecTrunc", "ORF.SPECTRUNC", "Spectral truncation of the input correlation matrix",
+  "ORFLIB", OrfSpecTruncArgs, 1);
+
 // Register the function ORF.PPOLYEVAL
 XLRegistration::Arg OrfPPolyEvalArgs[] = {
   { "BkPoints", "vector of breakpoints", "XLF_OPER" },

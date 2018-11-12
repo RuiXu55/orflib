@@ -22,13 +22,15 @@ struct McParams
     MINSTDRAND,
     MT19937,
     RANLUX3,
-    RANLUX4
+    RANLUX4,
+    SOBOL
   };
 
   /** The known path generator types */
   enum class PathGenType
   {
-    EULER
+    EULER,
+    BROWNIANBRIDGE
   };
 
 

@@ -10,6 +10,8 @@
 #include <orflib/defines.hpp>
 #include <orflib/exception.hpp>
 #include <random>
+#include <orflib/math/random/sobolurng.hpp>
+#include <orflib/math/stats/normaldistribution.hpp>
 
 BEGIN_NAMESPACE(orf)
 
@@ -21,7 +23,7 @@ class NormalRng
 
 public:
   /** Ctor from distribution parameters */
-  explicit NormalRng(size_t dimension, double mean = 0.0, double stdev = 1.0, URNG const & urng = URNG());
+  explicit NormalRng(size_t dimension, double mean = 0.0, double stdev = 1.0);
 
   /** Returns the dimension of the generator */
   size_t dim() const;
@@ -47,8 +49,8 @@ private:
 // Inline definitions
 
 template<typename URNG>
-NormalRng<URNG>::NormalRng(size_t dimension, double mean, double stdev, URNG const & urng)
-  : dim_(dimension), urng_(urng)
+NormalRng<URNG>::NormalRng(size_t dimension, double mean, double stdev)
+  : dim_(dimension)
 {
   ORF_ASSERT(stdev > 0.0, "the standard deviation must be positive!");
   normcdf_ = std::normal_distribution<double>(mean, stdev);
@@ -72,6 +74,25 @@ template<typename URNG>
 URNG & NormalRng<URNG>::urng()
 {
   return urng_;
+}
+
+template<>
+inline
+NormalRng<SobolURng>::NormalRng(size_t dimension, double mean, double stdev)
+: dim_(dimension), urng_(dimension)
+{
+  ORF_ASSERT(stdev > 0.0, "the standard deviation must be positive!");
+  normcdf_ = std::normal_distribution<double>(mean, stdev);
+}
+
+template<>
+template <typename ITER>
+void NormalRng<SobolURng>::next(ITER begin, ITER end)
+{
+  urng_.next(begin, end);
+  orf::NormalDistribution stdnorm;
+  for (ITER it = begin; it != end; ++it)
+    *it = stdnorm.invcdf(*it);
 }
 
 END_NAMESPACE(orf)
