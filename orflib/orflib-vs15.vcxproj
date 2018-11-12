@@ -142,10 +142,15 @@
   <ItemGroup>
     <ClInclude Include="defines.hpp" />
     <ClInclude Include="exception.hpp" />
+    <ClInclude Include="math\stats\errorfunction.hpp" />
+    <ClInclude Include="math\stats\normaldistribution.hpp" />
+    <ClInclude Include="math\stats\univariatedistribution.hpp" />
+    <ClInclude Include="pricers\simplepricers.hpp" />
     <ClInclude Include="sptr.hpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="empty.cpp" />
+    <ClCompile Include="math\stats\errorfunction.cpp" />
+    <ClCompile Include="pricers\simplepricers.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="math\stats\errorfunction.cpp">
+      <Filter>math\stats</Filter>
+    </ClCompile>
+    <ClCompile Include="pricers\simplepricers.cpp">
+      <Filter>pricers</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="defines.hpp" />
+    <ClInclude Include="exception.hpp" />
+    <ClInclude Include="sptr.hpp" />
+    <ClInclude Include="math\stats\errorfunction.hpp">
+      <Filter>math\stats</Filter>
+    </ClInclude>
+    <ClInclude Include="math\stats\normaldistribution.hpp">
+      <Filter>math\stats</Filter>
+    </ClInclude>
+    <ClInclude Include="pricers\simplepricers.hpp">
+      <Filter>pricers</Filter>
+    </ClInclude>
+    <ClInclude Include="math\stats\univariatedistribution.hpp">
+      <Filter>math\stats</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="math">
+      <UniqueIdentifier>{5288661e-ab8c-472f-bc25-7f41008e78c0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="math\stats">
+      <UniqueIdentifier>{5b20e576-78f3-45cd-b2af-2efb8d9a8ee8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="pricers">
+      <UniqueIdentifier>{37dd2c84-81b7-4a27-80d6-18d13e5ebf14}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>
