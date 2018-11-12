@@ -7,6 +7,9 @@
     <ClCompile Include="pricers\simplepricers.cpp">
       <Filter>pricers</Filter>
     </ClCompile>
+    <ClCompile Include="math\interpol\piecewisepolynomial.cpp">
+      <Filter>math\interpol</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="defines.hpp" />
@@ -24,6 +27,12 @@
     <ClInclude Include="math\stats\univariatedistribution.hpp">
       <Filter>math\stats</Filter>
     </ClInclude>
+    <ClInclude Include="math\matrix.hpp">
+      <Filter>math</Filter>
+    </ClInclude>
+    <ClInclude Include="math\interpol\piecewisepolynomial.hpp">
+      <Filter>math\interpol</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="math">
@@ -34,6 +43,9 @@
     </Filter>
     <Filter Include="pricers">
       <UniqueIdentifier>{37dd2c84-81b7-4a27-80d6-18d13e5ebf14}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="math\interpol">
+      <UniqueIdentifier>{a0549c3a-d574-4ad7-b4c9-16cfb7b8de07}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

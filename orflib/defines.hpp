@@ -8,14 +8,14 @@
 
 /** version string */
 #ifdef _DEBUG
-	#define ORF_VERSION_STRING "0.2.0-debug"
+	#define ORF_VERSION_STRING "0.3.0-debug"
 #else
-#define ORF_VERSION_STRING "0.2.0"
+#define ORF_VERSION_STRING "0.3.0"
 #endif
 
 /** version numbers */
 #define ORF_VERSION_MAJOR 0
-#define ORF_VERSION_MINOR 2
+#define ORF_VERSION_MINOR 3
 #define ORF_VERSION_REVISION 0
 
 /** Macro for namespaces */

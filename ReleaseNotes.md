@@ -1,6 +1,33 @@
 ORFLIB Release Notes
 ====================
 
+VERSION 0.3.0
+-------------
+
+### Additions
+
+1. New file `orflib/math/matrix.hpp`.   
+  It defines aliases for the Vector and Matrix classes to be used in numerical work.
+
+2. New folder `orflib/math/interpol` with two new files `piecewisepolynomial.hpp` and `piecewisepolynomial.cpp`.  
+	They implement the class PiecewisePolynomial.
+
+3. Two new files `xlorflib/xlutils.hpp` and `xlorflib/xlutils.cpp`.  
+	They implement the utility functions xlOperToVector(), xlVectorToOper(), xlOperToMatrix() and xlMatrixToOper().
+	
+4. The following Excel callable functions have been added:  
+	ORF.MATRIXECHO  
+	ORF.PPOLYEVAL  
+	ORF.PPOLYINTEGRAL  
+	ORF.PPOLYSUM  
+	These are used for testing the Matrix and PiecewisePolynomial classes.
+
+### Modifications
+
+1. Orflib now has dependency on the armadillo C++ matrix library. 
+  The "C/C++->Additional Include Directories" project settings have been updated.
+
+
 VERSION 0.2.0
 -------------
 
@@ -17,19 +44,20 @@ VERSION 0.2.0
 4. New folder `orflib/math/pricers` to contain pricing related source files.
 
 5. New files `orflib/math/pricers/simplepricers.hpp` and `simplepricers.cpp`.  
-	Definition of the functions fwdPrice(), digitalOptionBS() and europeanOptionBS().
+	Definition of the functions fwdPrice() and digitalOptionBS().
 
 6. New file `xlorflib/xlfunctions1.cpp`.  
 	Added definition of the following functions:  
-	xlOrfErf(), xlOrfInvErf(), xlOrfNormalCdf(), xlOrfNormalInvCdf(), xlOrfFwdPrice(), xlOrfDigiBS() and xlOrfEuroBS().
+	xlOrfErf(), xlOrfInvErf(), xlOrfNormalCdf(), xlOrfNormalInvCdf(),
+	xlOrfFwdPrice() and xlOrfDigiBS().
 
 7. In file `xlorflib/xlregister.cpp`  
 	Added registration of Excel callable functions:   
-	ORF.ERF, ORF.INVERF, ORF.NORMALCDF, ORF.NORMALINVCDF, ORF.FWDPRICE, ORF.DIGIBS, ORF.EUROBS.
+	ORF.ERF, ORF.INVERF, ORF.NORMALCDF, ORF.NORMALINVCDF, ORF.FWDPRICE, ORF.DIGIBS.
 
 ### Modifications
 
-1. Removed unnecessary file `orflib/empty.cpp`
+1. Removed unnecessary file `orflib/emptystub.cpp`
 
 
 VERSION 0.1.0
