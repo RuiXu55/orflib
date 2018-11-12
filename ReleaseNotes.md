@@ -1,6 +1,64 @@
 ORFLIB Release Notes
 ====================
 
+VERSION 0.6.0
+-------------
+
+### Additions
+
+1. New folder `orflib/math/random`  
+	It will contain files for random number generation.
+  
+2. New file `orflib/math/random/normalrng.hpp`  
+	It defines the NormalRng class template that generates random normal deviates.
+  
+3. New file `orflib/math/random/rng.hpp`  
+	It contains typedefs for common combinations of distributions and underlying generators.  
+	This file is to be included by any other file that requires random samples.
+  
+4. New folder `orflib/methods/montecarlo`  
+	It will contain files specific to MC path generation.
+  
+5. New files `orflib/methods/montecarlo/pathgenerator.hpp` and `eulerpathgenerator.hpp`  
+	The first file defines the abstract base PathGenerator and the second file defines a class template 
+	that generates paths using the Euler method.
+  
+6. New file `orflib/methods/montecarlo/mcparams.hpp`  
+	It defines a struct to be used for collecting MC parameters.
+
+7. New folder `orflib/products`  
+	It will contain files specific to product payoffs.
+
+8. New files `orflib/products/product.hpp` and `orflib/products/europeancallput.hpp`  
+	The abstact product base class and the European option product class.
+
+7. New file `orflib/math/stats/statisticscalculator.hpp`  
+	It defines the base class template for classes that compute statistics of samples.
+  
+9. New file `orflib/math/stats/meanvarcalculator.hpp`  
+	It defines the mean-variance calculator.
+
+10. New files  `orflib/pricers/bsmcpricer.hpp` and `bsmcpricer.cpp`  
+	They define the Black-Scholes Monte Carlo pricer class.
+    
+11. New Excel utility function xlOperToMcParams() in file `xlorflib/xlutils.hpp` and `xlutils.cpp` 
+
+12. Two new Excel files `xlorflib/xlregister3.cpp` and `xlfunctions3.cpp`  
+	They define the Excel function ORF.EUROBSMC
+
+13. Added all solutions to homeworks 2-5.
+
+14. New folder `examples/Excel` containing all example spreadsheets.
+
+### Modifications
+
+1. Fixed bug in inverse normal CDF in `orflib/math/stats/normaldistribution.hpp`
+
+2. Minor changes to `exception.hpp`, `sptrmap.hpp`, `utils.hpp` to satisfy gcc compiler.
+
+3. Minor changes to `piecewisepolynomial.hpp`, `yieldcurve.hpp`, `volatilitytermstructure.hpp` to satisfy gcc compiler.
+
+
 VERSION 0.5.0
 -------------
 

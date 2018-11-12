@@ -109,13 +109,13 @@ public:
   // Computed assignments
 
   /** Add a constant value to this */
-  PiecewisePolynomial& operator+=(double a) { c_.row(0) += a; }
+  PiecewisePolynomial& operator+=(double a) { c_.row(0) += a; return *this; }
   /** Subtract a constant value from this */
-  PiecewisePolynomial& operator-=(double a) { c_.row(0) -= a; }
+  PiecewisePolynomial& operator-=(double a) { c_.row(0) -= a; return *this; }
   /** Multiply this with a constant value */
-  PiecewisePolynomial& operator*=(double a) { c_ *= a; }
+  PiecewisePolynomial& operator*=(double a) { c_ *= a; return *this; }
   /** Divide this by a constant value */
-  PiecewisePolynomial& operator/=(double a) { c_ /= a; }
+  PiecewisePolynomial& operator/=(double a) { c_ /= a; return *this; }
 
   // Polynomial algebra
 
@@ -248,7 +248,7 @@ template<typename ITER>
 inline void PiecewisePolynomial::setBreakPoints(ITER xFirst, ITER xLast, size_t order)
 {
   x_.resize(xLast - xFirst);
-  std::copy(xFirst, xLast, x_.data().begin());
+  std::copy(xFirst, xLast, x_.begin());
 }
 
 

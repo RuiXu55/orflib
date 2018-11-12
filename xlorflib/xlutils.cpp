@@ -1,5 +1,6 @@
 #include <xlorflib/xlutils.hpp>
 #include <orflib/exception.hpp>
+#include <orflib/utils.hpp>
 
 using namespace xlw;
 using namespace orf;
@@ -230,4 +231,56 @@ XlfOper xlMatrixToOper(Matrix const & mat)
     }
   }
   return xlRange;
+}
+
+/** Converts an Excel range with name-value pairs to an McParams structure.
+    In the Excel range all names must be in first column and all values in the second.
+*/
+orf::McParams xlOperToMcParams(xlw::XlfOper xlRange)
+{
+  McParams mcparams;
+  if (xlRange.IsMissing() || xlRange.IsNil())
+    return mcparams;
+
+  RW  nr = xlRange.rows();
+  COL nc = xlRange.columns();
+
+  ORF_ASSERT(nr > 0, "xlOperToMcParams: the input range is empty!");
+  ORF_ASSERT(nc == 2, "xlOperToMcParams: the input range must have two columns!");
+
+  // row scan
+  for (RW i = 0; i < nr; ++i) {
+    std::string paramname = xlRange(i, 0).AsString();
+    paramname = orf::trim(paramname);
+    std::transform(paramname.begin(), paramname.end(), paramname.begin(), ::toupper);
+
+    if (paramname == "URNGTYPE") {
+      std::string paramvalue = xlRange(i, 1).AsString();
+      paramvalue = orf::trim(paramvalue);
+      std::transform(paramvalue.begin(), paramvalue.end(), paramvalue.begin(), ::toupper);
+
+      if (paramvalue == "MINSTDRAND")
+        mcparams.urngType = McParams::UrngType::MINSTDRAND;
+      else if (paramvalue == "MT19937")
+        mcparams.urngType = McParams::UrngType::MT19937;
+      else if (paramvalue == "RANLUX3")
+        mcparams.urngType = McParams::UrngType::RANLUX3;
+      else if (paramvalue == "RANLUX4")
+        mcparams.urngType = McParams::UrngType::RANLUX4;
+      else
+        ORF_ASSERT(0, "xlOperToMcParams: invalid value for McParam " + paramname + "!");
+    }
+    else  if (paramname == "PATHGENTYPE") {
+      std::string paramvalue = xlRange(i, 1).AsString();
+      paramvalue = orf::trim(paramvalue);
+      std::transform(paramvalue.begin(), paramvalue.end(), paramvalue.begin(), ::toupper);
+      if (paramvalue == "EULER")
+        mcparams.pathGenType = McParams::PathGenType::EULER;
+      else
+        ORF_ASSERT(0, "xlOperToMcParams: invalid value for McParam " + paramname + "!");
+    }
+    else
+      ORF_ASSERT(0, "xlOperToMcParams: unknown McParam " + paramname + "!");
+  } // next row in the range
+  return mcparams;
 }

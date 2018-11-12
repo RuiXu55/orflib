@@ -25,7 +25,7 @@ public:
   /** initializing ctor */
   explicit Exception(std::string const & errmsg) : what_(errmsg) {}
   /** Returns the error message */
-  virtual const char* what() const { return what_.c_str(); }
+  virtual const char* what() const noexcept { return what_.c_str(); }
   /** dtor */
   virtual ~Exception() {}	
 

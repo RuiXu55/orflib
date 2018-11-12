@@ -97,6 +97,32 @@ LPXLFOPER EXCEL_EXPORT xlOrfFwdPrice(LPXLFOPER xlSpot,
   EXCEL_END;
 }
 
+LPXLFOPER EXCEL_EXPORT xlOrfQFwdPrice(LPXLFOPER xlSpot,
+                                      LPXLFOPER xlTimeToExp,
+                                      LPXLFOPER xlIntRate,
+                                      LPXLFOPER xlDivYield,
+                                      LPXLFOPER xlAssetVol,
+                                      LPXLFOPER xlFxVol,
+                                      LPXLFOPER xlCorrel)
+{
+  EXCEL_BEGIN;
+
+  if (XlfExcel::Instance().IsCalledByFuncWiz())
+    return XlfOper(true);
+
+  double spot = XlfOper(xlSpot).AsDouble();
+  double timeToExp = XlfOper(xlTimeToExp).AsDouble();
+  double intRate = XlfOper(xlIntRate).AsDouble();
+  double divYield = XlfOper(xlDivYield).AsDouble();
+  double assetvol = XlfOper(xlAssetVol).AsDouble();
+  double fxvol = XlfOper(xlFxVol).AsDouble();
+  double correl = XlfOper(xlCorrel).AsDouble();
+  double qfwd = quantoFwdPrice(spot, timeToExp, intRate, divYield,
+    assetvol, fxvol, correl);
+
+  return XlfOper(qfwd);
+  EXCEL_END;
+}
 
 LPXLFOPER EXCEL_EXPORT xlOrfDigiBS(LPXLFOPER xlPayoffType,
                                    LPXLFOPER xlSpot,
@@ -149,22 +175,55 @@ LPXLFOPER EXCEL_EXPORT xlOrfEuroBS(LPXLFOPER xlPayoffType,
   // handling the xlHeaders argument 
   bool headers;
   if (XlfOper(xlHeaders).IsMissing() || XlfOper(xlHeaders).IsNil())
-    headers = true;
+    headers = false;
   else
     headers = XlfOper(xlHeaders).AsBool();
-
-  double price = europeanOptionBS(payoffType, spot, strike, timeToExp,
+  Vector greeks = europeanOptionBS(payoffType, spot, strike, timeToExp,
     intRate, divYield, vol);
-
-  XlfOper xlRet(2, 1); // construct as a 2x1 range     
+  COL ngreeks = (COL)greeks.size();
+  RW offset = headers ? 1 : 0;
+  XlfOper xlRet(offset + 1, ngreeks); // construct a range of size 1 x ngreeks
   if (headers) {
     xlRet(0, 0) = "Price";
-    xlRet(1, 0) = price;
-  }
-  else {
-    xlRet = price;
-  }
+    xlRet(0, 1) = "Delta";
+    xlRet(0, 2) = "Gamma";
+    xlRet(0, 3) = "Theta";
+    xlRet(0, 4) = "Vega";
+  };
+  // write the Greeks into the Oper
+  for (COL i = 0; i < ngreeks; ++i)
+    xlRet(offset, i) = greeks[i];
+
   return xlRet;
+  EXCEL_END;
+}
+
+LPXLFOPER EXCEL_EXPORT xlOrfKOFwd(LPXLFOPER xlSpot, 
+                                  LPXLFOPER xlStrike,
+                                  LPXLFOPER xlKOLevel, 
+                                  LPXLFOPER xlTimeToExp, 
+                                  LPXLFOPER xlTimeToKO,
+                                  LPXLFOPER xlIntRate, 
+                                  LPXLFOPER xlDivYield,
+                                  LPXLFOPER xlVolatility) 
+{
+  EXCEL_BEGIN;
+  if (XlfExcel::Instance().IsCalledByFuncWiz())
+    return XlfOper(true);
+
+  double spot = XlfOper(xlSpot).AsDouble();
+  double strike = XlfOper(xlStrike).AsDouble();
+  double kolevel = XlfOper(xlKOLevel).AsDouble();
+  double timeToExp = XlfOper(xlTimeToExp).AsDouble();
+  double timeToKO = XlfOper(xlTimeToKO).AsDouble();
+  double intRate = XlfOper(xlIntRate).AsDouble();
+  double divYield = XlfOper(xlDivYield).AsDouble();
+  double vol = XlfOper(xlVolatility).AsDouble();
+
+  double price = knockoutFwd(spot, strike, kolevel, timeToExp, timeToKO, intRate,
+                          divYield, vol);
+
+  return XlfOper(price);
   EXCEL_END;
 }
 

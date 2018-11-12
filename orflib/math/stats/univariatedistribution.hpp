@@ -3,6 +3,9 @@
 @brief Base class for all univariate distributions
 */
 
+#ifndef ORF_UNIVARIATEDISTRIBUTION_HPP
+#define ORF_UNIVARIATEDISTRIBUTION_HPP
+
 #include <orflib/defines.hpp>
 #include <orflib/exception.hpp>
 
@@ -25,3 +28,5 @@ public:
 };
 
 END_NAMESPACE(orf)
+
+#endif  // ORF_UNIVARIATEDISTRIBUTION_HPP

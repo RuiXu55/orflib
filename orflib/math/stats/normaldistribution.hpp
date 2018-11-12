@@ -42,7 +42,7 @@ public:
   {
     ORF_ASSERT(p > 0 && p < 1, "error: prob. must be in (0,1)");
     ErrorFunction e;
-    return -M_SQRT1_2 * sig_ * e.inverfc(2.0 * p) + mu_;
+    return -M_SQRT2 * sig_ * e.inverfc(2.0 * p) + mu_;
   }
 
 protected:

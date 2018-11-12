@@ -1,4 +1,5 @@
 #include <orflib/math/matrix.hpp>
+#include <orflib/methods/montecarlo/mcparams.hpp>
 #include <xlw/xlw.h>
 
 /** The tick and tock are unprintable characters; in Excel they look like a little square.
@@ -37,3 +38,8 @@ orf::Matrix xlOperToMatrix(xlw::XlfOper xlMat);
 /** Converts an orf::Matrix to an XlfOper
 */
 xlw::XlfOper xlMatrixToOper(orf::Matrix const & mat);
+
+/** Converts an Excel range with name-value pairs to an McParams structure.
+    In the Excel range all names must be in first column and all values in the second.
+*/
+orf::McParams xlOperToMcParams(xlw::XlfOper xlRange);

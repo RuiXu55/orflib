@@ -85,17 +85,17 @@ template<typename T>
 inline typename SPtrMap<T>::pair_type 
 SPtrMap<T>::get_pair(std::string const& name) const {
     typename map_type::const_iterator it = map_type::find(name.c_str());
-    return it == end() ? pair_type() : it->second;
+    return it == map_type::end() ? pair_type() : it->second;
 }
 
 template<typename T>
 inline bool 
 SPtrMap<T>::remove_pair(std::string const& name) {
     typename map_type::const_iterator it = map_type::find(name.c_str());
-    if (it == end())
+    if (it == map_type::end())
         return false;
     else {
-        erase(it);
+        this->erase(it);
     }
     return true;
 }
@@ -104,8 +104,7 @@ template<typename T>
 inline std::vector<std::string> 
 SPtrMap<T>::list() const {
     std::vector<std::string> lst;
-    map_type::const_iterator cit;
-    for (cit = map_type::begin(); cit != map_type::end(); ++cit) 
+    for (auto cit = map_type::begin(); cit != map_type::end(); ++cit) 
         lst.push_back(cit->first);
     return lst;
 }
@@ -113,8 +112,7 @@ SPtrMap<T>::list() const {
 template<typename T>
 inline bool SPtrMap<T>::contains(std::string const& name) const {
     std::string nm = processName(name);
-    cont_iterator cit = find(nm);
-    return cit != end();
+    return map_type::find(nm) != map_type::end();
 }
 
 template<typename T> 
@@ -130,7 +128,7 @@ SPtrMap<T>::set(std::string const& name, ptr_type sp) {
     std::string nm = processName(name);
     // first check if the object is already stored under this name
     bool b = remove_pair(nm);
-    insert(std::make_pair(nm, std::make_pair(sp, ++ver_)));
+    this->insert(std::make_pair(nm, std::make_pair(sp, ++ver_)));
     return std::make_pair(nm, ver_);
 }
 

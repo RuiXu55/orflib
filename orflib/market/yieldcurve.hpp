@@ -50,7 +50,7 @@ public:
              XITER tMatEnd,
              YITER rateBegin,
              YITER rateEnd,
-             InputType rtype = SPOTRATE);
+             InputType rtype = InputType::SPOTRATE);
 
   /** Returns the curve currency */
   std::string ccy() const { return ccy_; }

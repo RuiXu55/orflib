@@ -147,24 +147,37 @@
     <ClInclude Include="defines.hpp" />
     <ClInclude Include="exception.hpp" />
     <ClInclude Include="market\market.hpp" />
+    <ClInclude Include="market\volatilitytermstructure.hpp" />
     <ClInclude Include="market\yieldcurve.hpp" />
     <ClInclude Include="math\interpol\piecewisepolynomial.hpp" />
     <ClInclude Include="math\matrix.hpp" />
     <ClInclude Include="math\optim\polyfunc.hpp" />
     <ClInclude Include="math\optim\roots.hpp" />
+    <ClInclude Include="math\random\normalrng.hpp" />
+    <ClInclude Include="math\random\rng.hpp" />
     <ClInclude Include="math\stats\errorfunction.hpp" />
+    <ClInclude Include="math\stats\meanvarcalculator.hpp" />
     <ClInclude Include="math\stats\normaldistribution.hpp" />
+    <ClInclude Include="math\stats\statisticscalculator.hpp" />
     <ClInclude Include="math\stats\univariatedistribution.hpp" />
+    <ClInclude Include="methods\montecarlo\eulerpathgenerator.hpp" />
+    <ClInclude Include="methods\montecarlo\mcparams.hpp" />
+    <ClInclude Include="methods\montecarlo\pathgenerator.hpp" />
+    <ClInclude Include="pricers\bsmcpricer.hpp" />
     <ClInclude Include="pricers\simplepricers.hpp" />
+    <ClInclude Include="products\europeancallput.hpp" />
+    <ClInclude Include="products\product.hpp" />
     <ClInclude Include="sptr.hpp" />
     <ClInclude Include="sptrmap.hpp" />
     <ClInclude Include="utils.hpp" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="market\market.cpp" />
+    <ClCompile Include="market\volatilitytermstructure.cpp" />
     <ClCompile Include="market\yieldcurve.cpp" />
     <ClCompile Include="math\interpol\piecewisepolynomial.cpp" />
     <ClCompile Include="math\stats\errorfunction.cpp" />
+    <ClCompile Include="pricers\bsmcpricer.cpp" />
     <ClCompile Include="pricers\simplepricers.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

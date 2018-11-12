@@ -10,6 +10,7 @@
 #include <orflib/exception.hpp>
 #include <string>
 #include <algorithm>
+#include <cmath>
 
 BEGIN_NAMESPACE(orf)
 
@@ -26,7 +27,7 @@ double toContCmpd(double rate, size_t annfreq)
 {
   ORF_ASSERT(annfreq >= 1.0, "compounding frequency less than 1 not allowed");
   double tmp = std::pow(1.0 + rate / annfreq, annfreq);
-  return log(tmp);
+  return std::log(tmp);
 }
 
 inline
