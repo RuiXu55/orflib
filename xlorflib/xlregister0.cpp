@@ -60,5 +60,45 @@ XLRegistration::XLFunctionRegistrationHelper regOrfPPolySum(
   "xlOrfPPolySum", "ORF.PPOLYSUM", "Creates two polynomial curves and adds them; returns bkpts and values ",
   "ORFLIB", OrfPPolySumArgs, 5);
 
+// Register the function ORF.POLYBRACKET
+XLRegistration::Arg OrfPolyBracketArgs[] = {
+  { "Coefficients", "coefficients of polynomial", "XLF_OPER" },
+  { "LowerLimit", "left boundary of interval", "XLF_OPER" },
+  { "UpperLimit", "right boundary of interval", "XLF_OPER" },
+  { "NSubs", "number of subintevals to search", "XLF_OPER" }
+};
+XLRegistration::XLFunctionRegistrationHelper regOrfPolyBracket(
+  "xlOrfPolyBracket", "ORF.POLYBRACKET", "Returns the root bracketing intervals of a polynomial",
+  "ORFLIB", OrfPolyBracketArgs, 4);
+
+// Register the function ORF.POLYSECANT
+XLRegistration::Arg OrfPolySecantArgs[] = {
+  { "Coefficients", "coefficients of polynomial", "XLF_OPER" },
+  { "LowerLimit", "left boundary of interval", "XLF_OPER" },
+  { "UpperLimit", "right boundary of interval", "XLF_OPER" },
+  { "Tolerance", "accuracy of root", "XLF_OPER" }
+};
+XLRegistration::XLFunctionRegistrationHelper regOrfPolySecant(
+  "xlOrfPolySecant", "ORF.POLYSECANT", "Returns the root of a polynomial within a bracketing interval",
+  "ORFLIB", OrfPolySecantArgs, 4);
+
+// Register the function ORF.TOCC
+XLRegistration::Arg OrfToContCmpdArgs[] = {
+  { "Rate", "Periodically compounded rate", "XLF_OPER" },
+  { "CmpdFreq", "Annual compounding frequency", "XLF_OPER" }
+};
+XLRegistration::XLFunctionRegistrationHelper regOrfToContCmpd(
+  "xlOrfToContCmpd", "ORF.TOCC", "Converts rate from periodic to continously compounded",
+  "ORFLIB", OrfToContCmpdArgs, 2);
+
+// Register the function ORF.FROMCC
+XLRegistration::Arg OrfFromContCmpdArgs[] = {
+  { "Rate", "Continously compounded rate", "XLF_OPER" },
+  { "CmpdFreq", "Annual compounding frequency", "XLF_OPER" }
+};
+XLRegistration::XLFunctionRegistrationHelper regOrfFromContCmpd(
+  "xlOrfFromContCmpd", "ORF.FROMCC", "Converts rate from continously to periodic compounded",
+  "ORFLIB", OrfFromContCmpdArgs, 2);
+
 }
 

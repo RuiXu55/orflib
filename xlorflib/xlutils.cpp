@@ -160,13 +160,15 @@ Vector xlOperToVector(xlw::XlfOper xlRange)
 
 /** Converts an orf::Vector to an xloper
 */
-XlfOper xlVectorToOper(Vector const & vec)
+XlfOper xlVectorToOper(Vector const & vec, bool colMajor)
 {
-  RW nr = (RW)vec.size();
-  COL nc = 1;
+  RW nr = colMajor ? (RW)vec.size(): 1;
+  COL nc = colMajor ? 1 : (RW)vec.size();
   XlfOper xlRange(nr, nc);
   for (RW i = 0; i < nr; ++i) {
-    xlRange.SetElement(i, 0, vec(i));
+    for (COL j = 0; j < nc; ++j) {
+      xlRange(i, j) = vec(i*colMajor + j * !colMajor);
+    }
   }
   return xlRange;
 }

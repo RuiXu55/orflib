@@ -27,7 +27,7 @@ orf::Vector xlOperToVector(xlw::XlfOper xlVec);
 
 /** Converts an orf::Matrix to an XlfOper
 */
-xlw::XlfOper xlVectorToOper(orf::Vector const & vec);
+xlw::XlfOper xlVectorToOper(orf::Vector const & vec, bool colMajor = true);
 
 /** Converts a rectangular XlfOper range to an orf::Matrix.
     It ignores any leading or trailing rows or columns that are empty.

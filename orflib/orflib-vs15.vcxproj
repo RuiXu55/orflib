@@ -150,6 +150,8 @@
     <ClInclude Include="market\yieldcurve.hpp" />
     <ClInclude Include="math\interpol\piecewisepolynomial.hpp" />
     <ClInclude Include="math\matrix.hpp" />
+    <ClInclude Include="math\optim\polyfunc.hpp" />
+    <ClInclude Include="math\optim\roots.hpp" />
     <ClInclude Include="math\stats\errorfunction.hpp" />
     <ClInclude Include="math\stats\normaldistribution.hpp" />
     <ClInclude Include="math\stats\univariatedistribution.hpp" />

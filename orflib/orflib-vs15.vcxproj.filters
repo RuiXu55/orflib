@@ -47,6 +47,12 @@
     </ClInclude>
     <ClInclude Include="sptrmap.hpp" />
     <ClInclude Include="utils.hpp" />
+    <ClInclude Include="math\optim\polyfunc.hpp">
+      <Filter>math\optim</Filter>
+    </ClInclude>
+    <ClInclude Include="math\optim\roots.hpp">
+      <Filter>math\optim</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="math">
@@ -63,6 +69,9 @@
     </Filter>
     <Filter Include="market">
       <UniqueIdentifier>{07f98ec6-f57d-4748-8d61-b639173c0824}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="math\optim">
+      <UniqueIdentifier>{722c6faa-e741-4924-9b1f-a0d8bcfab318}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

@@ -5,7 +5,10 @@
 
 #include <xlw/xlw.h>
 #include <orflib/defines.hpp>
+#include <orflib/utils.hpp>
 #include <orflib/math/interpol/piecewisepolynomial.hpp>
+#include <orflib/math/optim/roots.hpp>
+#include <orflib/math/optim/polyfunc.hpp>
 #include <xlorflib/xlutils.hpp>
 
 using namespace xlw;
@@ -131,5 +134,85 @@ LPXLFOPER EXCEL_EXPORT xlOrfPPolySum(LPXLFOPER xlBkPoints1,
   EXCEL_END;
 }
 
+LPXLFOPER EXCEL_EXPORT xlOrfPolyBracket(LPXLFOPER xlCoeffs,
+                                        LPXLFOPER xlLowerLimit,
+                                        LPXLFOPER xlUpperLimit,
+                                        LPXLFOPER xlNSubs)
+{
+  EXCEL_BEGIN;
+
+  if (XlfExcel::Instance().IsCalledByFuncWiz())
+    return XlfOper(true);
+
+  Vector coeffs = xlOperToVector(XlfOper(xlCoeffs));
+  double xlo = XlfOper(xlLowerLimit).AsDouble();
+  double xhi = XlfOper(xlUpperLimit).AsDouble();
+  int nsubs = XlfOper(xlNSubs).AsInt();
+
+  Polynomial p(coeffs);
+  Vector xb1, xb2;
+  int nroot;
+
+  zbrak(p, xlo, xhi, nsubs, xb1, xb2, nroot);
+
+  // return breakpoints and coefficients
+  XlfOper xlRange(nroot + 1, 2);
+  xlRange(0, 0) = "NRoots";
+  xlRange(0, 1) = nroot;
+  for (RW i = 1; i < xlRange.rows(); ++i) {
+    xlRange(i, 0) = xb1[i - 1];
+    xlRange(i, 1) = xb2[i - 1];
+  }
+
+  return XlfOper(xlRange);
+  EXCEL_END;
+}
+
+
+LPXLFOPER EXCEL_EXPORT xlOrfPolySecant(LPXLFOPER xlCoeffs,
+                                       LPXLFOPER xlLowerLimit,
+                                       LPXLFOPER xlUpperLimit,
+                                       LPXLFOPER xlTol)
+{
+  EXCEL_BEGIN;
+
+  if (XlfExcel::Instance().IsCalledByFuncWiz())
+    return XlfOper(true);
+
+  Vector coeffs = xlOperToVector(XlfOper(xlCoeffs));
+  double xlo = XlfOper(xlLowerLimit).AsDouble();
+  double xhi = XlfOper(xlUpperLimit).AsDouble();
+  double tol = XlfOper(xlTol).AsDouble();
+
+  Polynomial p(coeffs);
+  double root = rtsec(p, xlo, xhi, tol);
+  return XlfOper(root);
+  EXCEL_END;
+}
+
+
+LPXLFOPER EXCEL_EXPORT xlOrfToContCmpd(LPXLFOPER xlRate,
+  LPXLFOPER xlAnnFreq)
+{
+  EXCEL_BEGIN;
+  if (XlfExcel::Instance().IsCalledByFuncWiz())
+    return XlfOper(true);
+
+  double ret = toContCmpd(XlfOper(xlRate).AsDouble(), XlfOper(xlAnnFreq).AsULong());
+  return XlfOper(ret);
+  EXCEL_END;
+}
+
+LPXLFOPER EXCEL_EXPORT xlOrfFromContCmpd(LPXLFOPER xlRate,
+  LPXLFOPER xlAnnFreq)
+{
+  EXCEL_BEGIN;
+  if (XlfExcel::Instance().IsCalledByFuncWiz())
+    return XlfOper(true);
+
+  double ret = fromContCmpd(XlfOper(xlRate).AsDouble(), XlfOper(xlAnnFreq).AsULong());
+  return XlfOper(ret);
+  EXCEL_END;
+}
 
 END_EXTERN_C

@@ -1,6 +1,29 @@
 ORFLIB Release Notes
 ====================
 
+VERSION 0.5.0
+-------------
+
+### Additions
+
+1. New utility functions toContCmpd() and fromContCpd() in file `orflib/utils.hpp`     
+   They convert an interest rate to/from  continuous compounding from/to compounding with a given annual frequency.
+
+2. New folder `orflib/math/optim`  
+  It will contain root finding and optimization routines.
+	
+3. New file `orflib/math/optim/roots.hpp`  
+  It contains the root finding routines zbrak and rtsec from NR C++ 3ed.
+
+4. New Excel callable functions ORF.TOCC, ORF.FROMCC, ORF.POLYBRACKET and ORF.POLYSECANT.
+
+### Modifications
+
+1. The function xlVectorToOper in `xlorflib/xlutils.hpp` got a extra parameter `bool colMajor = true`  
+  When this parameter is true (default) the vector is written as a column.  
+  If the parameter is false, the vector is written as a row.
+
+
 VERSION 0.4.0
 -------------
 

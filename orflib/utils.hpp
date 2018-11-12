@@ -21,6 +21,22 @@ std::string trim(const std::string &s)
   return (wsback <= wsfront ? std::string() : std::string(wsfront, wsback));
 }
 
+inline
+double toContCmpd(double rate, size_t annfreq)
+{
+  ORF_ASSERT(annfreq >= 1.0, "compounding frequency less than 1 not allowed");
+  double tmp = std::pow(1.0 + rate / annfreq, annfreq);
+  return log(tmp);
+}
+
+inline
+double fromContCmpd(double rate, size_t annfreq)
+{
+  ORF_ASSERT(annfreq >= 1.0, "compounding frequency less than 1 not allowed");
+  double tmp = std::exp(rate/annfreq);
+  return (tmp - 1.0)*annfreq;
+}
+
 END_NAMESPACE(orf)
 
 #endif // ORF_UTILS_HPP
