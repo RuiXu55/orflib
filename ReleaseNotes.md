@@ -1,6 +1,37 @@
 ORFLIB Release Notes
 ====================
 
+VERSION 0.4.0
+-------------
+
+### Additions
+
+1. New file `orflib/sptrmap.hpp`
+	It defines the SPtrMap class template.
+
+2. New folder `orflib/market` with two new files `yieldcurve.hpp` and `yieldcurve.cpp`.  
+	They define and implement the YieldCurve class.
+
+3. Two new files `orflib/market/market.hpp` and `market.cpp`  
+	They define and implement the Market singleton class.
+
+4. New files `orflib/util.hpp` for generic utility fiunctions.   
+	It contains a function for trimming strings
+	
+5. Two new utility functions xlAddTick() and xlStripTick() in files `xlorflib/xlutils.hpp` and `.cpp`.  
+	These are used for adding and removing the tick-tock mark after the name of the object handle.
+
+6. Two new files `xlorflib/xlfunctions2.cpp` and `xlorflib/xlregister2.cpp`  
+	They implement and register the following Excel functions  
+	ORF.MKTLIST  
+	ORF.MKTCLEAR  
+	ORF.YCCREATE  
+	ORF.DF  
+	ORF.FWDDF  
+	ORF.SPOTRATE  
+	ORF.FWDRATE  
+
+
 VERSION 0.3.0
 -------------
 

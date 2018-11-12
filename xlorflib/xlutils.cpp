@@ -4,6 +4,24 @@
 using namespace xlw;
 using namespace orf;
 
+std::string xlAddTick(std::string const & name)
+{
+  return name + (char)XL_TICK;
+}
+
+std::string xlStripTick(std::string const & name)
+{
+  char chtick = (char)XL_TICK;
+  size_t loc = name.find(chtick, 0);
+  std::string strippedName;
+  std::string finaltag;
+  if (loc != std::string::npos)
+    strippedName = name.substr(0, loc);
+  else
+    strippedName = name;
+  return strippedName;
+}
+
 /** Utility function that scans a rectangular XlfOper range, and selects the rectangular subrange
     that does not contain leading or trailing empty rows and columns.
     It computes the start and end row and column indices of the subrange.

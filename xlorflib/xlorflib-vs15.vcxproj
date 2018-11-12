@@ -180,8 +180,10 @@
   <ItemGroup>
     <ClCompile Include="xlfunctions0.cpp" />
     <ClCompile Include="xlfunctions1.cpp" />
+    <ClCompile Include="xlfunctions2.cpp" />
     <ClCompile Include="xlregister0.cpp" />
     <ClCompile Include="xlregister1.cpp" />
+    <ClCompile Include="xlregister2.cpp" />
     <ClCompile Include="xlutils.cpp" />
   </ItemGroup>
   <ItemGroup>

@@ -10,6 +10,12 @@
     <ClCompile Include="math\interpol\piecewisepolynomial.cpp">
       <Filter>math\interpol</Filter>
     </ClCompile>
+    <ClCompile Include="market\market.cpp">
+      <Filter>market</Filter>
+    </ClCompile>
+    <ClCompile Include="market\yieldcurve.cpp">
+      <Filter>market</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="defines.hpp" />
@@ -33,6 +39,14 @@
     <ClInclude Include="math\interpol\piecewisepolynomial.hpp">
       <Filter>math\interpol</Filter>
     </ClInclude>
+    <ClInclude Include="market\market.hpp">
+      <Filter>market</Filter>
+    </ClInclude>
+    <ClInclude Include="market\yieldcurve.hpp">
+      <Filter>market</Filter>
+    </ClInclude>
+    <ClInclude Include="sptrmap.hpp" />
+    <ClInclude Include="utils.hpp" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="math">
@@ -46,6 +60,9 @@
     </Filter>
     <Filter Include="math\interpol">
       <UniqueIdentifier>{a0549c3a-d574-4ad7-b4c9-16cfb7b8de07}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="market">
+      <UniqueIdentifier>{07f98ec6-f57d-4748-8d61-b639173c0824}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

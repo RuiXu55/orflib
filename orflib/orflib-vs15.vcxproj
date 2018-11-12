@@ -146,6 +146,8 @@
   <ItemGroup>
     <ClInclude Include="defines.hpp" />
     <ClInclude Include="exception.hpp" />
+    <ClInclude Include="market\market.hpp" />
+    <ClInclude Include="market\yieldcurve.hpp" />
     <ClInclude Include="math\interpol\piecewisepolynomial.hpp" />
     <ClInclude Include="math\matrix.hpp" />
     <ClInclude Include="math\stats\errorfunction.hpp" />
@@ -153,8 +155,12 @@
     <ClInclude Include="math\stats\univariatedistribution.hpp" />
     <ClInclude Include="pricers\simplepricers.hpp" />
     <ClInclude Include="sptr.hpp" />
+    <ClInclude Include="sptrmap.hpp" />
+    <ClInclude Include="utils.hpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="market\market.cpp" />
+    <ClCompile Include="market\yieldcurve.cpp" />
     <ClCompile Include="math\interpol\piecewisepolynomial.cpp" />
     <ClCompile Include="math\stats\errorfunction.cpp" />
     <ClCompile Include="pricers\simplepricers.cpp" />

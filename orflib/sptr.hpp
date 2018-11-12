@@ -1,6 +1,6 @@
 /** 
 @file  sptr.hpp
-@brief Typedefs for working with std::shared_ptr<T>
+@brief Type aliases for working with std::shared_ptr<T>
 */
 
 #ifndef ORF_SPTR_HPP
