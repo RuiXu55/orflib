@@ -288,3 +288,46 @@ orf::McParams xlOperToMcParams(xlw::XlfOper xlRange)
   } // next row in the range
   return mcparams;
 }
+
+/** Converts an Excel range with name-value pairs to an PdeParams structure.
+In the Excel range all names must be in first column and all values in the second.
+*/
+orf::PdeParams xlOperToPdeParams(xlw::XlfOper xlRange)
+{
+  RW  nr = xlRange.rows();
+  COL nc = xlRange.columns();
+
+  ORF_ASSERT(nr > 0, "xlOperToPdeParams: the input range is empty!");
+  ORF_ASSERT(nc == 2, "xlOperToPdeParams: the input range must have two columns!");
+  PdeParams pdeparams;
+  // row scan
+  for (RW i = 0; i < nr; ++i) {
+    std::string paramname = xlRange(i, 0).AsString();
+    paramname = orf::trim(paramname);
+    std::transform(paramname.begin(), paramname.end(), paramname.begin(), ::toupper);
+
+    if (paramname == "NTIMESTEPS") {
+      int paramvalue = xlRange(i, 1).AsInt();
+      ORF_ASSERT(paramvalue > 0, "xlOperToPdeParams: the number of time steps must be positive!");
+      pdeparams.nTimeSteps = paramvalue;
+    }
+    else if (paramname == "NSPOTNODES" || paramname == "NSPOTNODES1") {
+      int paramvalue = xlRange(i, 1).AsInt();
+      ORF_ASSERT(paramvalue > 0, "xlOperToPdeParams: the number of spot nodes must be positive!");
+      pdeparams.nSpotNodes[0] = paramvalue;
+    }
+    else if (paramname == "NSTDDEVS" || paramname == "NSTDDEVS1") {
+      double paramvalue = xlRange(i, 1).AsDouble();
+      ORF_ASSERT(paramvalue > 0, "xlOperToPdeParams: the number of standard deviations must be positive!");
+      pdeparams.nStdDevs[0] = paramvalue;
+    }
+    else if (paramname == "THETA") {
+      double paramvalue = xlRange(i, 1).AsDouble();
+      ORF_ASSERT(paramvalue >= 0.0 && paramvalue <= 1.0, "xlOperToPdeParams: Theta must be between 0 and 1!");
+      pdeparams.theta = paramvalue;
+    }
+    else
+      ORF_ASSERT(0, "xlOperToPdeParams: unknown PdeParam " + paramname + "!");
+  } // next row in the range
+  return pdeparams;
+}

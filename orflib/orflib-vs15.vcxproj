@@ -149,6 +149,7 @@
     <ClInclude Include="market\market.hpp" />
     <ClInclude Include="market\volatilitytermstructure.hpp" />
     <ClInclude Include="market\yieldcurve.hpp" />
+    <ClInclude Include="math\interpol\interpolation1d.hpp" />
     <ClInclude Include="math\interpol\piecewisepolynomial.hpp" />
     <ClInclude Include="math\linalg\linalg.hpp" />
     <ClInclude Include="math\matrix.hpp" />
@@ -167,6 +168,12 @@
     <ClInclude Include="methods\montecarlo\eulerpathgenerator.hpp" />
     <ClInclude Include="methods\montecarlo\mcparams.hpp" />
     <ClInclude Include="methods\montecarlo\pathgenerator.hpp" />
+    <ClInclude Include="methods\pde\pde1dsolver.hpp" />
+    <ClInclude Include="methods\pde\pdebase.hpp" />
+    <ClInclude Include="methods\pde\pdegrid.hpp" />
+    <ClInclude Include="methods\pde\pdeparams.hpp" />
+    <ClInclude Include="methods\pde\pderesults.hpp" />
+    <ClInclude Include="methods\pde\tridiagonalops1d.hpp" />
     <ClInclude Include="pricers\bsmcpricer.hpp" />
     <ClInclude Include="pricers\multiassetbsmcpricer.hpp" />
     <ClInclude Include="pricers\simplepricers.hpp" />
@@ -188,6 +195,8 @@
     <ClCompile Include="math\random\sobolurng.cpp" />
     <ClCompile Include="math\stats\errorfunction.cpp" />
     <ClCompile Include="methods\montecarlo\pathgenerator.cpp" />
+    <ClCompile Include="methods\pde\pde1dsolver.cpp" />
+    <ClCompile Include="methods\pde\pdebase.cpp" />
     <ClCompile Include="pricers\bsmcpricer.cpp" />
     <ClCompile Include="pricers\multiassetbsmcpricer.cpp" />
     <ClCompile Include="pricers\simplepricers.cpp" />

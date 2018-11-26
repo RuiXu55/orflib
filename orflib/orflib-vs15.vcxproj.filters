@@ -40,6 +40,12 @@
     <ClCompile Include="pricers\multiassetbsmcpricer.cpp">
       <Filter>pricers</Filter>
     </ClCompile>
+    <ClCompile Include="methods\pde\pde1dsolver.cpp">
+      <Filter>methods\pde</Filter>
+    </ClCompile>
+    <ClCompile Include="methods\pde\pdebase.cpp">
+      <Filter>methods\pde</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="defines.hpp" />
@@ -128,6 +134,27 @@
     <ClInclude Include="products\asianbasketcallput.hpp">
       <Filter>products</Filter>
     </ClInclude>
+    <ClInclude Include="methods\pde\pde1dsolver.hpp">
+      <Filter>methods\pde</Filter>
+    </ClInclude>
+    <ClInclude Include="methods\pde\pdebase.hpp">
+      <Filter>methods\pde</Filter>
+    </ClInclude>
+    <ClInclude Include="methods\pde\pdegrid.hpp">
+      <Filter>methods\pde</Filter>
+    </ClInclude>
+    <ClInclude Include="methods\pde\pdeparams.hpp">
+      <Filter>methods\pde</Filter>
+    </ClInclude>
+    <ClInclude Include="methods\pde\pderesults.hpp">
+      <Filter>methods\pde</Filter>
+    </ClInclude>
+    <ClInclude Include="methods\pde\tridiagonalops1d.hpp">
+      <Filter>methods\pde</Filter>
+    </ClInclude>
+    <ClInclude Include="math\interpol\interpolation1d.hpp">
+      <Filter>math\interpol</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="math">
@@ -162,6 +189,9 @@
     </Filter>
     <Filter Include="math\linalg">
       <UniqueIdentifier>{faf61328-cc3b-4089-b6d9-037d6a419ce8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="methods\pde">
+      <UniqueIdentifier>{09cb7acf-7ed6-4ef1-8856-2f1508e02def}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

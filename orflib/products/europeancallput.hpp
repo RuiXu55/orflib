@@ -27,6 +27,10 @@ public:
   */
   virtual void eval(Matrix const& pricePath) override;
 
+  /** Evaluates the product at fixing time index idx
+  */
+  virtual void eval(size_t idx, Vector const& spots, double contValue) override;
+
 private:
   int payoffType_;     // 1: call; -1 put
   double strike_;
@@ -64,6 +68,18 @@ inline void EuropeanCallPut::eval(Matrix const& pricePath)
     payAmounts_[0] = S_T >= strike_ ? S_T - strike_ : 0.0;
   else
     payAmounts_[0] = S_T >= strike_ ? 0.0 : strike_ - S_T;
+}
+
+// This product has only one fixing.
+inline void EuropeanCallPut::eval(size_t idx, Vector const& spots, double contValue)
+{
+  // the continuation value is not used
+  ORF_ASSERT(idx == 0, "EuropeanCallPut: wrong fixing time index!");
+  double S_T = spots[idx];
+  if (payoffType_ == 1)
+    payAmounts_[idx] = S_T >= strike_ ? S_T - strike_ : 0.0;
+  else
+    payAmounts_[idx] = S_T >= strike_ ? 0.0 : strike_ - S_T;
 }
 
 END_NAMESPACE(orf)

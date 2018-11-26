@@ -32,6 +32,10 @@ public:
       */
   virtual void eval(Matrix const& pricePath) override;
 
+  /** Evaluates the product at fixing time index idx
+  */
+  virtual void eval(size_t idx, Vector const& spots, double contValue) override;
+
 private:
   int payoffType_;          // 1: call; -1 put
   double strike_;
@@ -97,6 +101,12 @@ inline void AsianBasketCallPut::eval(Matrix const& pricePath)
     payAmounts_[0] = bsktAvg >= strike_ ? bsktAvg - strike_ : 0.0;
   else
     payAmounts_[0] = bsktAvg >= strike_ ? 0.0 : strike_ - bsktAvg;
+}
+
+// Not implemented
+inline void AsianBasketCallPut::eval(size_t idx, Vector const& spots, double contValue)
+{
+  ORF_ASSERT(0, "not implemented!");
 }
 
 END_NAMESPACE(orf)

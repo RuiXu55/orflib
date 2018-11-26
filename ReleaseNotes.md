@@ -1,6 +1,49 @@
 ORFLIB Release Notes
 ====================
 
+VERSION 0.8.0
+-------------
+
+### Additions
+
+1. New folder `orflib/methods/pde`. It contains PDE related files.
+
+2. New file `orflib/methods/pde/tridiagonalops1d.hpp`.  
+	Definition of the class TridiagonalOperator and derived classes.
+
+3. New file `orflib/methods/pde/pdegrid.hpp`.  
+	Definition of the classes CoordinateChange and GridAxis.
+	
+4. New file `orflib/methods/pde/pdeparams.hpp`.  
+	Definition of the class PdeParams.
+
+5. New file `orflib/methods/pde/pderesults.hpp`.  
+	Definition of the class PdeResults.
+
+6. New file `orflib/math/interpol/interpolation1d.hpp`.  
+	Definition of the class LinearInterpolation1D.
+
+7. New files `orflib/methods/pde/pdebase.hpp` and `pdebase.cpp`.  
+	Definition of the abstract base class PdeBase.
+	
+8. New files `orflib/methods/pde/pde1dsolver.hpp` and `pde1dsolver.cpp`.  
+	Definition of the one spot dimension PDE solver.
+	
+9. New files `xlorflib/xlfunctions4.cpp` and `xlorflib/xlregister4.cpp`.  
+	Definition and registration of the Excel function ORF.EUROBSPDE
+
+10. In file `xlorflib/xlutils.hpp` and `xlutils.cpp`.  
+	Added utility function xlOperToPdeParams.
+
+### Modifications
+
+1. In file `orflib/products/product.hpp`.  
+   Added method Product::timeSteps. It sets up the time steps to be used in the PDE solver.  
+
+2. In file `orflib/products/product.hpp`.  
+   Added method overload Product::eval. It evaluates the product at a specific point in time.  
+
+
 VERSION 0.7.0
 -------------
 

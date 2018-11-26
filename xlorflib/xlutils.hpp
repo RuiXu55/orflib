@@ -1,5 +1,6 @@
 #include <orflib/math/matrix.hpp>
 #include <orflib/methods/montecarlo/mcparams.hpp>
+#include <orflib/methods/pde/pdeparams.hpp>
 #include <xlw/xlw.h>
 
 /** The tick and tock are unprintable characters; in Excel they look like a little square.
@@ -43,3 +44,8 @@ xlw::XlfOper xlMatrixToOper(orf::Matrix const & mat);
     In the Excel range all names must be in first column and all values in the second.
 */
 orf::McParams xlOperToMcParams(xlw::XlfOper xlRange);
+
+/** Converts an Excel range with name-value pairs to an PdeParams structure.
+    In the Excel range all names must be in first column and all values in the second.
+*/
+orf::PdeParams xlOperToPdeParams(xlw::XlfOper xlRange);
