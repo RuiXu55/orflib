@@ -21,7 +21,7 @@ public:
               SPtrYieldCurve discountYieldCurve,
               double spot,
               double divyield,
-              double vol,
+              SPtrVolatilityTermStructure vol,
               Pde1DResults& results,
               bool storeAllResults = false)
   : PdeBase(product), results_(results), storeAllResults_(storeAllResults)

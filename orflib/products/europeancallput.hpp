@@ -31,7 +31,7 @@ public:
   */
   virtual void eval(size_t idx, Vector const& spots, double contValue) override;
 
-private:
+protected:
   int payoffType_;     // 1: call; -1 put
   double strike_;
   double timeToExp_;

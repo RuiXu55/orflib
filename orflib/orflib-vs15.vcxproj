@@ -177,6 +177,7 @@
     <ClInclude Include="pricers\bsmcpricer.hpp" />
     <ClInclude Include="pricers\multiassetbsmcpricer.hpp" />
     <ClInclude Include="pricers\simplepricers.hpp" />
+    <ClInclude Include="products\americancallput.hpp" />
     <ClInclude Include="products\asianbasketcallput.hpp" />
     <ClInclude Include="products\europeancallput.hpp" />
     <ClInclude Include="products\product.hpp" />

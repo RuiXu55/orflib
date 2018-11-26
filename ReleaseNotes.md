@@ -1,6 +1,23 @@
 ORFLIB Release Notes
 ====================
 
+VERSION 0.9.0
+-------------
+
+### Additions
+
+1. New file `orflib/products/americancallput.hpp`.  
+	Definition of the class AmericanCallPut.
+
+### Modifications
+
+1. In file `orflib/products/europeancallput.hpp`.  
+   Changed access of the member variables from `private` to `protected`.  
+
+2. In files `xlorflib/xlfunctions4.cpp` and `xlorflib/xlregister4.cpp`.  
+	Definition and registration of the Excel function ORF.AMERBSPDE.
+
+
 VERSION 0.8.0
 -------------
 

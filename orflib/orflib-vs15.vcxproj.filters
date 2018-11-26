@@ -155,6 +155,9 @@
     <ClInclude Include="math\interpol\interpolation1d.hpp">
       <Filter>math\interpol</Filter>
     </ClInclude>
+    <ClInclude Include="products\americancallput.hpp">
+      <Filter>products</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="math">
