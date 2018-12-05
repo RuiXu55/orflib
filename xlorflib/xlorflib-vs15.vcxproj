@@ -183,11 +183,13 @@
     <ClCompile Include="xlfunctions2.cpp" />
     <ClCompile Include="xlfunctions3.cpp" />
     <ClCompile Include="xlfunctions4.cpp" />
+    <ClCompile Include="xlfunctions5.cpp" />
     <ClCompile Include="xlregister0.cpp" />
     <ClCompile Include="xlregister1.cpp" />
     <ClCompile Include="xlregister2.cpp" />
     <ClCompile Include="xlregister3.cpp" />
     <ClCompile Include="xlregister4.cpp" />
+    <ClCompile Include="xlregister5.cpp" />
     <ClCompile Include="xlutils.cpp" />
   </ItemGroup>
   <ItemGroup>

@@ -46,6 +46,9 @@
     <ClCompile Include="methods\pde\pdebase.cpp">
       <Filter>methods\pde</Filter>
     </ClCompile>
+    <ClCompile Include="pricers\ptpricers.cpp">
+      <Filter>pricers</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="defines.hpp" />
@@ -157,6 +160,9 @@
     </ClInclude>
     <ClInclude Include="products\americancallput.hpp">
       <Filter>products</Filter>
+    </ClInclude>
+    <ClInclude Include="pricers\ptpricers.hpp">
+      <Filter>pricers</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

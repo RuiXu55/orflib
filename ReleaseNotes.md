@@ -1,6 +1,22 @@
 ORFLIB Release Notes
 ====================
 
+VERSION 0.10.0
+-------------
+
+### Additions
+
+1. New files `orflib/pricers/ptpricers.hpp` and `ptpricers.cpp`.  
+	They contain portfolio related functions.
+  
+2. New files `xlorflib/xlfunctions5.cpp` and `xlorflib/xlregister5.cpp`.  
+	They register and implement the following Excel callable functions:  
+   ORF.PTRISK             (portfolio expected return and risk)  
+   ORF.MVPWGHTS           (mvp weights)  
+   ORF.MKTWGHTS           (CAPM market portfolio weights)  
+   ORF.MKTRISK            (CAPM market portfolio mean return and standard deviation)  
+
+
 VERSION 0.9.0
 -------------
 

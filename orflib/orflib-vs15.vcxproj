@@ -176,6 +176,7 @@
     <ClInclude Include="methods\pde\tridiagonalops1d.hpp" />
     <ClInclude Include="pricers\bsmcpricer.hpp" />
     <ClInclude Include="pricers\multiassetbsmcpricer.hpp" />
+    <ClInclude Include="pricers\ptpricers.hpp" />
     <ClInclude Include="pricers\simplepricers.hpp" />
     <ClInclude Include="products\americancallput.hpp" />
     <ClInclude Include="products\asianbasketcallput.hpp" />
@@ -200,6 +201,7 @@
     <ClCompile Include="methods\pde\pdebase.cpp" />
     <ClCompile Include="pricers\bsmcpricer.cpp" />
     <ClCompile Include="pricers\multiassetbsmcpricer.cpp" />
+    <ClCompile Include="pricers\ptpricers.cpp" />
     <ClCompile Include="pricers\simplepricers.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
