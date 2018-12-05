@@ -18,8 +18,6 @@ std::tuple<double, double> ptRisk(Vector const& weights,
 
 /** Weights of the minimum variance portfolio */
 Vector mvpWeights(Vector const& assetRets, Vector const& assetVols, Matrix const& correlMat);
-Vector meanvarWeights(Vector const& assetRets, Vector const& assetVols, Matrix const& correlMat, double const lambda);
-Vector meanvarFront(Vector const& assetRets, Vector const& assetVols, Matrix const& correlMat, double const lambdamax, int const nlambdasteps);
 
 /** Weights of the CAPM market portfolio */
 Vector mktWeights(Vector const& assetRets, Vector const& assetVols, Matrix const& correlMat, double rfreeRate);

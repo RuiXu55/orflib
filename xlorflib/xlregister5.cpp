@@ -30,37 +30,6 @@ namespace {
     "xlOrfMvpWghts", "ORF.MVPWGHTS", "Weights of the minimum variance portfolio.",
     "ORFLIB", OrfMvpWghtsArgs, 3);
 
-
-  // Register the function ORF.MEANVARWGHTS
-  XLRegistration::Arg OrfMeanvarWghtsArgs[] = {
-	{ "AssetRets", "expected asset returns within holding period", "XLF_OPER" },
-	{ "AssetVols", "volatility of returns within holding period", "XLF_OPER" },
-	{ "CorrelMat", "asset return correlation matrix", "XLF_OPER" },
-	{"Lambda", "rist aversion factor", "XLF_OPER"}
-  };
-  XLRegistration::XLFunctionRegistrationHelper regOrfMeanvarWghts(
-	  "xlOrfMeanvarWghts", "ORF.MEANVARWGHTS", "Weights of the minimum variance portfolio with rist aversion.",
-	  "ORFLIB", OrfMeanvarWghtsArgs, 4);
-
-
-  // Register the function ORF.MEANVARWGHTS
-  XLRegistration::Arg OrfMeanvarFrontArgs[] = {
-	{ "AssetRets", "expected asset returns within holding period", "XLF_OPER" },
-	{ "AssetVols", "volatility of returns within holding period", "XLF_OPER" },
-	{ "CorrelMat", "asset return correlation matrix", "XLF_OPER" },
-	{"Lambdamax", "rist aversion factor", "XLF_OPER"},
-	{"nsteps", "n different lambda", "XLF_OPER"}
-  };
-  XLRegistration::XLFunctionRegistrationHelper regOrfMeanvarFront(
-	  "xlOrfMeanvarFront", "ORF.MEANVARFRONT", "Front of the minimum variance portfolio with rist aversion.",
-	  "ORFLIB", OrfMeanvarFrontArgs, 5);
-
-
-
-
-
-
-
   // Register the function ORF.MKTWGHTS
   XLRegistration::Arg OrfMktWghtsArgs[] = {
     { "AssetRets", "expected asset returns within holding period", "XLF_OPER" },

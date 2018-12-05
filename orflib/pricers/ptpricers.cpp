@@ -73,53 +73,6 @@ Vector mvpWeights(Vector const& assetRets, Vector const& assetVols, Matrix const
 }
 
 
-/** The weights of the minimum variance portfolio */
-Vector meanvarWeights(Vector const& assetRets, Vector const& assetVols, Matrix const& correlMat, double const lambda)
-{
-	size_t nassets = validatePtInputs(assetRets, assetVols, correlMat);
-	Vector iota(nassets, fill::ones);
-	Matrix SigmaInv = correlMat;
-	// convert correlation to covariance matrix
-	for (size_t i = 0; i < SigmaInv.n_rows; ++i)
-		for (size_t j = 0; j < SigmaInv.n_cols; ++j)
-			SigmaInv(i, j) *= assetVols(i) * assetVols(j);
-
-	SigmaInv = SigmaInv.i();   // invert in place
-	Vector wghts = SigmaInv * iota;
-	double c = dot(iota, wghts);
-	double a = dot(iota, SigmaInv*assetRets);
-	return (1.0 / c) * wghts + lambda * (SigmaInv*assetRets - a / c * wghts);
-}
-
-Vector meanvarFront(Vector const& assetRets, Vector const& assetVols, Matrix const& correlMat, double const lambdamax, int const nlambdasteps)
-{
-	size_t nassets = validatePtInputs(assetRets, assetVols, correlMat);
-	Vector iota(nassets, fill::ones);
-	Matrix SigmaInv = correlMat;
-	// convert correlation to covariance matrix
-	for (size_t i = 0; i < SigmaInv.n_rows; ++i)
-		for (size_t j = 0; j < SigmaInv.n_cols; ++j)
-			SigmaInv(i, j) *= assetVols(i) * assetVols(j);
-
-	SigmaInv = SigmaInv.i();   // invert in place
-	Vector wghts = SigmaInv * iota;
-	double c = dot(iota, wghts);
-	double a = dot(iota, SigmaInv*assetRets);
-	double b = dot(assetRets, SigmaInv*assetRets);
-	double d = b * c - a * a;
-	Vector res(3 * (nlambdasteps+1), fill::ones);
-	for (int i = 0; i <= nlambdasteps; ++i) {
-		double lambda = lambdamax * i / (nlambdasteps );
-		double meanp = a / c + d / c * lambda;
-		double varp = 1 / c + d / c * lambda*lambda;
-		res(3 * i) = lambda;
-		res(3 * i + 1) = meanp;
-		res(3 * i + 2) = varp;
-	}
-	return res;
-}
-
-
 /** The weights of the CAPM market portfolio */
 Vector mktWeights(Vector const& assetRets, Vector const& assetVols, Matrix const& correlMat, double rfreeRate)
 {
